@@ -1,3 +1,21 @@
+<#
+.SYNOPSIS
+Exports data about Azure VMs to a CSV file.
+
+.DESCRIPTION
+This function retrieves information about all Azure VMs in the subscription and exports selected details to a CSV file. It includes VM name, resource group name, SKU, location, disk type, and disk SKUs. The function provides a progress update as it processes each VM, making it suitable for environments with a large number of VMs.
+
+.PARAMETER CsvPath
+Specifies the path where the CSV file will be saved. The file will contain columns for VM Name, Resource Group Name, SKU, Location, Disk Type, and Disk SKUs.
+
+.EXAMPLE
+Export-AzVMDataToCsv -CsvPath "C:\VMData.csv"
+
+This command exports the VM data to a CSV file named 'VMData.csv' in the C: drive.
+
+.NOTES
+Requires Azure PowerShell module. Ensure you are logged into your Azure account with appropriate permissions to access VM information.
+#>
 function Export-AzVMDataToCsv {
     param (
         [string]$CsvPath
@@ -24,7 +42,7 @@ function Export-AzVMDataToCsv {
         Write-Progress @progress
 
         # Get the disks attached to the VM
-        $disks = Get-AzDisk | Where-Object { $_.ManagedBy -eq $vm.Id }
+        
 
         # Extract disk SKUs
         $diskSkus = $disks | ForEach-Object { $_.Sku.Name }
