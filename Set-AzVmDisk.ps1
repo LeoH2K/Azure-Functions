@@ -20,7 +20,7 @@ This example updates all disks of the VM with the ID '/subscriptions/12345678-ab
 Requires the Azure PowerShell module. The user must have appropriate permissions to stop/start VMs and update disk configurations in Azure.
 
 #>
-function Update-AzVmDisk {
+function Set-AzVmDisk {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
