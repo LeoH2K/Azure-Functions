@@ -50,6 +50,6 @@ function Set-AzVmDisk {
 
     # Start VM
     Write-Verbose "Starting VM with ID: $vmId"
-    Start-AzVM -Id $vmId -Force
+    Start-AzVM -Id $vmId
     Write-Verbose "VM started successfully."
 }
